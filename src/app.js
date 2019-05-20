@@ -9,7 +9,7 @@ const config = require('./config/config');
 /**
  * Import routes
  */
-
+const userRoute = require('./routes/user');
 /**
  * Connect application to MySQL
  */
@@ -56,6 +56,7 @@ app.use((req, res, next) => {
 /**
  * Application Routes
  */
+app.use('/user', userRoute);
 
 // If no routes are found
 app.use((req, res, next) => {

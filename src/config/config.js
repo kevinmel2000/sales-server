@@ -8,7 +8,7 @@ module.exports = {
       dialect: 'mysql',      
       host: process.env.DB_HOST,
       operatorsAliases: false,
-      logging: true,
+      logging: false,
       pool: {
         max: 5,
         min: 0,
