@@ -1,0 +1,19 @@
+{
+  "name": "sales-server",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": "https://github.com/tokanggit/sales-server",
+  "author": "roylisto",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1",    
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.0"    
+  }
+}
