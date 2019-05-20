@@ -1,16 +1,28 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const { sequelize } = require('./models');
+const config = require('./config/config');
 
 /**
  * Import routes
  */
 
 /**
- * Connect application to Mongo DB Atlas
+ * Connect application to MySQL
  */
-
+sequelize
+  .authenticate()
+  .then(() => {
+    sequelize.sync().then(() => {      
+      console.log(`Server started on port ${config.port}`)
+    })
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err)
+  });
 
 /**
  * set up morgan to log the incoming request
@@ -49,9 +61,8 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   const error = new Error('Endpoint Not found');
   error.status = 404;
-  next(error);
+  next(error);  
 });
-
 
 // To catch and sends error message
 app.use((error, req, res, next) => {
@@ -61,6 +72,7 @@ app.use((error, req, res, next) => {
         message: error.message
       }
   });
+  next();
 });
 
 module.exports = app;

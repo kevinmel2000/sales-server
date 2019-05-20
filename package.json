@@ -10,10 +10,18 @@
   "author": "roylisto",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "bluebird": "^3.5.4",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "eslint": "^5.16.0",
     "express": "^4.17.0",
-    "jsonwebtoken": "^8.5.1",    
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.0"    
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.0",
+    "sequelize": "^5.8.6"
   }
 }
