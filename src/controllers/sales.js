@@ -25,13 +25,14 @@ module.exports = {
       })
     }
   },
-  async list (req, res) {
+  async get (req, res) {
     try {
       const { 
         userId           
       } = req.params;
 
-      const {          
+      const {     
+        salesId,     
         productId,
         dateEntry,
         dateStart,
@@ -41,6 +42,9 @@ module.exports = {
       } = req.body;
 
       let andWhere = '';
+      if(salesId) {
+        andWhere+=` and s.id = ${salesId} `;
+      }
       if (userId) {
         andWhere+=` and s.user_id = ${userId} `;
       }
@@ -88,6 +92,56 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'There was a problem while searching for the sales'
+      });
+    }
+  },
+  async update (req, res) {
+    try {
+      const sales = await Sales.update(
+        req.body.updates,
+        {
+          where: {
+            id: req.params.salesId
+          }
+        }
+      );
+      if (sales[0] > 0) {
+        res.status(200).send({
+          message: 'Sales updated successfully'
+        });
+      } else {
+        res.status(500).send({
+          error: `Sales is not found`
+        });
+      }
+    } catch (err) {
+      res.status(500).send({
+        error: 'There was a problem while updating the sales'
+      });
+    }
+  },
+  async delete (req, res) {
+    try {
+      const { salesId } = req.params;
+      const sales = await Sales.destroy({
+        where: {
+          id: salesId
+        }
+      });
+
+      if (sales) {
+        res.status(200).send({
+          message: 'Sales deleted successfully'
+        });
+      } else {
+        res.status(500).send({
+          error: `Sales is not found`
+        });
+      }
+
+    } catch (err) {
+      res.status(500).send({
+        error: 'There was a problem while deleting the sales'
       });
     }
   }
