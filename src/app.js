@@ -3,12 +3,11 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const { sequelize } = require('./models');
 const config = require('./config/config');
 
-/**
- * Connect application to MySQL
- */
 sequelize
   .authenticate()
   .then(() => {
@@ -20,22 +19,30 @@ sequelize
     console.error('Unable to connect to the database:', err)
   });
 
-/**
- * set up morgan to log the incoming request
- */
 app.use(morgan('dev'));
 
-/**
- * setup body parser
- */
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+  key: 'user_sid',
+  secret: 'kredivo',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  }
+}));
 
-/**
- * setup CORS
- */
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+    res.clearCookie('user_sid');
+  }
+  next();
+});
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
