@@ -54,12 +54,14 @@ app.use((req, res, next) => {
  */
 const userRoute = require('./routes/user');
 const productRoute = require('./routes/product');
+const salesRoute = require('./routes/sales');
 
 /**
  * Application Routes
  */
 app.use('/user', userRoute);
 app.use('/product', productRoute);
+app.use('/sales', salesRoute);
 
 // If no routes are found
 app.use((req, res, next) => {
