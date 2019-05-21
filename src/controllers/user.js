@@ -14,13 +14,14 @@ module.exports = {
     try {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
-      res.send({
-        user: userJson,
+      res.status(200).send({
+        name: user.name,
+        email: user.email,        
         token: jwtSignUser(userJson)
       })
     } catch (err) {
       console.log(err)
-      res.status(400).send({
+      res.status(500).send({
         error: 'The email account is already in use'
       })
     }
@@ -34,7 +35,7 @@ module.exports = {
         }
       })
       if (!user) {
-        return res.status(403).send({
+        return res.status(500).send({
           error: 'The login information was incorrect'
         })
       }
@@ -49,7 +50,8 @@ module.exports = {
 
       const userJson = user.toJSON()
       res.send({
-        user,
+        name: user.name,
+        email: user.email,
         token: jwtSignUser(userJson)
       })
     } catch (err) {
