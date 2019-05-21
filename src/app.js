@@ -7,10 +7,6 @@ const { sequelize } = require('./models');
 const config = require('./config/config');
 
 /**
- * Import routes
- */
-const userRoute = require('./routes/user');
-/**
  * Connect application to MySQL
  */
 sequelize
@@ -54,9 +50,16 @@ app.use((req, res, next) => {
 });
 
 /**
+ * Import routes
+ */
+const userRoute = require('./routes/user');
+const productRoute = require('./routes/product');
+
+/**
  * Application Routes
  */
 app.use('/user', userRoute);
+app.use('/product', productRoute);
 
 // If no routes are found
 app.use((req, res, next) => {
