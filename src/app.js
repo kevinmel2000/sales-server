@@ -43,17 +43,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+app.use((req, res, next) => {  
+  res.header('Access-Control-Allow-Origin', '*'); 
   res.header(
     'Access-Control-Allow-Headers', 
-    'Origin, X-Requested-With, Accept, Authorization'
+    'Origin, X-Requested-With, Accept, Authorization, Content-Type'
   );
   if(req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');    
     return res.status(200).json({});
   }
-  next();
+  next();  
 });
 
 /**

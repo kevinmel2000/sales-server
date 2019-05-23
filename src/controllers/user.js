@@ -36,7 +36,7 @@ module.exports = {
         }
       });
       if (!user) {
-        return res.status(500).send({
+        return res.status(400).send({
           error: 'The login information was incorrect'
         });
       }
@@ -44,7 +44,7 @@ module.exports = {
       const isPasswordValid = await user.comparePassword(password);
       console.log(password);
       if (!isPasswordValid) {
-        return res.status(500).send({
+        return res.status(400).send({
           error: 'The login information was incorrect'
         });
       }
