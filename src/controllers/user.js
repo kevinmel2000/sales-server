@@ -16,6 +16,7 @@ module.exports = {
       const userJson = user.toJSON();
       req.session.user = user.id;
       res.status(200).send({
+        user_id: user.id,
         name: user.name,
         email: user.email,        
         token: jwtSignUser(userJson)
@@ -50,6 +51,7 @@ module.exports = {
       const userJson = user.toJSON();
       req.session.user = user.id;      
       res.status(200).send({
+        user_id: user.id,
         name: user.name,
         email: user.email,
         token: jwtSignUser(userJson)
