@@ -63,6 +63,17 @@ module.exports = {
         limit+=` limit ${rowStart},${rowCount} `;
       }
 
+      const countQuery = `select count(s.id) as count
+      from Sales s, Users u, Products p 
+      where s.user_id = u.id and s.product_id = p.id 
+      ${andWhere}      
+      `;
+
+      const salesCount = await sequelize.query(
+        countQuery,
+        { type: sequelize.QueryTypes.SELECT }
+      );      
+
       const query = `select s.id, u.name as sales_name, p.name as product_name, p.price, s.quantity, (p.price * s.quantity) as ammount, s.createdAt
       from Sales s, Users u, Products p 
       where s.user_id = u.id and s.product_id = p.id 
@@ -74,10 +85,11 @@ module.exports = {
       const sales = await sequelize.query(
         query,
         { type: sequelize.QueryTypes.SELECT }
-      );
+      );      
 
       if (sales.length > 0){
         res.status(200).send({
+          countNoLimit: salesCount[0].count,
           count: sales.length,
           rows: sales
         })
