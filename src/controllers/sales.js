@@ -9,7 +9,7 @@ module.exports = {
           message: 'Sales add successfully'
         });
       } else {
-        res.status(500).send({
+        res.status(400).send({
           error: 'Failed to add sales'
         });
       }
@@ -85,7 +85,7 @@ module.exports = {
           rows: sales
         })
       } else {
-        res.status(500).send({
+        res.status(400).send({
           error: 'Sales not found'
         })
       }
@@ -110,7 +110,7 @@ module.exports = {
           message: 'Sales updated successfully'
         });
       } else {
-        res.status(500).send({
+        res.status(400).send({
           error: `Sales is not found`
         });
       }
@@ -134,7 +134,7 @@ module.exports = {
           message: 'Sales deleted successfully'
         });
       } else {
-        res.status(500).send({
+        res.status(400).send({
           error: `Sales is not found`
         });
       }
