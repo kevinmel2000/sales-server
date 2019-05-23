@@ -50,8 +50,7 @@ module.exports = {
       }
 
       const userJson = user.toJSON();
-      req.session.user = user.id;
-      req.headers.authorization = 
+      req.session.user = user.id;      
       res.status(200).send({
         name: user.name,
         email: user.email,
