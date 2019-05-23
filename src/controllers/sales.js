@@ -27,10 +27,6 @@ module.exports = {
   },
   async get (req, res) {
     try {
-      const { 
-        userId           
-      } = req.params;
-
       const {     
         salesId,     
         productId,
@@ -38,8 +34,9 @@ module.exports = {
         dateStart,
         dateEnd,
         rowStart,
-        rowCount        
-      } = req.body;
+        rowCount,
+        userId        
+      } = req.query;
 
       let andWhere = '';
       if(salesId) {

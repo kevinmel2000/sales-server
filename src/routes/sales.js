@@ -6,7 +6,7 @@ const SalesController = require('../controllers/sales');
 
 // Auth Route
 router.post('/', checkAuth, SalesController.add);
-router.get('/', checkAuth, SalesController.get);
+router.get('/', SalesController.get);
 router.get('/:userId', checkAuth, SalesController.get);
 router.patch('/:salesId', checkAuth, SalesController.update);
 router.delete('/:salesId', checkAuth, SalesController.delete);
