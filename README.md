@@ -17,3 +17,16 @@ yarn
 ### 2. Run the server
 ```bash
 yarn start
+```
+
+### 3. API URL
+```bash
+http://localhost:4000
+```
+or the deployed version at Heroku
+```bash
+http://localhost:4000
+```
+```bash
+https://sales-backend.herokuapp.com
+```
