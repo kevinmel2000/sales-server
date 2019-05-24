@@ -23,7 +23,3 @@ yarn start
 ```bash
 http://localhost:4000
 ```
-or the deployed version at Heroku
-```bash
-https://sales-backend.herokuapp.com
-```
