@@ -74,7 +74,7 @@ module.exports = {
         { type: sequelize.QueryTypes.SELECT }
       );      
 
-      const query = `select s.id, u.name as sales_name, p.name as product_name, p.price, s.quantity, (p.price * s.quantity) as ammount, s.createdAt
+      const query = `select s.id, u.name as sales_name, s.product_id, p.name as product_name, p.price, s.quantity, (p.price * s.quantity) as ammount, s.createdAt
       from Sales s, Users u, Products p 
       where s.user_id = u.id and s.product_id = p.id 
       ${andWhere}
